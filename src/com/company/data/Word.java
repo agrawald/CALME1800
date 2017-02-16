@@ -1,11 +1,6 @@
 package com.company.data;
 
-import com.company.utils.NumberPad;
-import com.company.utils.Utils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.company.utils.Encoding;
 
 /**
  * Created by agrawald on 16/02/17.
@@ -25,7 +20,7 @@ public class Word {
             this.number[0] = Integer.parseInt(word);
         } else {
             for (int i = 0; i < word.length(); i++) {
-                number[i] = NumberPad.getNumber(word.charAt(i));
+                number[i] = Encoding.getNumber(word.charAt(i));
             }
         }
     }

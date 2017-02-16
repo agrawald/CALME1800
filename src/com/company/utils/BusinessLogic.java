@@ -7,7 +7,7 @@ import java.util.function.Function;
 /**
  * Created by agrawald on 16/2/17.
  */
-public interface Utils {
+public interface BusinessLogic {
     Function<int[], Integer> CALCULATE_HASH = ints -> {
         int result = 0;
         for(int i: ints) {

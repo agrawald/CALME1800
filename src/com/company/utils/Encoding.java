@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Class to define the encoding and load the encoding at the class loading time
+ *
  * Created by agrawald on 16/02/17.
  */
-public final class NumberPad {
+public final class Encoding {
     private static Map<Character, Integer> NUMBER_PAD = new HashMap<>();
 
     static {
