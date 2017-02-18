@@ -1,8 +1,9 @@
-package com.company.service;
+package com.anx.callme.service;
 
-import com.company.data.Section;
-import com.company.data.Word;
-import com.company.utils.BusinessLogic;
+import com.anx.callme.data.Section;
+import com.anx.callme.data.Word;
+import com.anx.callme.utils.BusinessLogic;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
  * Service to provide functionality to search dictionary
  * Created by agrawald on 17/02/17.
  */
+@Slf4j
 public enum DictionarySvc {
     INSTANCE;
 
@@ -22,7 +24,8 @@ public enum DictionarySvc {
      * Using concurrent lined queue to hold suitably big dictionary in-memory.
      * Also we would be using parallel stream to search for the words hence it should be concurrent
      */
-    private static ConcurrentLinkedQueue<Word> DICTIONARY = new ConcurrentLinkedQueue<>();
+    static ConcurrentLinkedQueue<Word> DICTIONARY = new ConcurrentLinkedQueue<>();
+    private static final String DEFAULT_DICTIONARY = "data/dictionary.txt";
 
     /**
      * Static function to initialize the dictionary queue
@@ -30,7 +33,12 @@ public enum DictionarySvc {
      * @param dictionaryFilePath
      * @throws IOException
      */
-    public void init(final String dictionaryFilePath) throws IOException {
+    public void init( String dictionaryFilePath) throws IOException {
+        if(dictionaryFilePath == null || dictionaryFilePath.isEmpty()) {
+            dictionaryFilePath = DEFAULT_DICTIONARY;
+            log.warn("Using Default Dictionary");
+        }
+
         DICTIONARY = Files.readAllLines(Paths.get(dictionaryFilePath))
                 .parallelStream()
                 .map(line -> line.replaceAll("[^a-zA-Z ]", ""))

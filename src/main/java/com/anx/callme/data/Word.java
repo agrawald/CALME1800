@@ -1,8 +1,10 @@
-package com.company.data;
+package com.anx.callme.data;
 
-import com.company.utils.Encoding;
+import com.anx.callme.utils.Encoding;
 
 /**
+ * Class to hold the words and its number representation
+ *
  * Created by agrawald on 16/02/17.
  */
 public class Word {
@@ -13,6 +15,10 @@ public class Word {
         return number;
     }
 
+    /**
+     * Constructor to set word and assign number to each letter
+     * @param word
+     */
     public Word(String word) {
         this.word = word;
         this.number = new int[word.length()];

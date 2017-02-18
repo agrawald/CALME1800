@@ -1,16 +1,24 @@
-package com.company.data;
+package com.anx.callme.data;
+
+import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Class to hold a section in a telephone seperated by a delimiter
+ * This class will also hold the number of words for this sections
+ *
  * Created by agrawald on 16/02/17.
  */
 public class Section {
     int[] digits;
-    List<Word> words;
+    @Getter private List<Word> words;
 
+    /**
+     * Constructor to set numbers as char array
+     * @param number
+     */
     public Section(int number) {
         this.words = new ArrayList<>();
         char[] chars = String.valueOf(number).toCharArray();
